@@ -2,31 +2,27 @@
 
 Adventure Game – Technical Documentation
 
+
 1. Code Hosting
 - GitHub: https://github.com/jwheat1/JWAdventureGame
-  (All Python files are hosted in this repository)
 
 2. Languages and Technologies
-- Python 3
-- Console-based interactive game
+- Python 3, console-based interactive game
 
 3. System Requirements
 - Python 3.x installed
 - Works on Windows, Mac, or Linux
 - Terminal or command prompt access
 
-4. Coding / Naming Conventions
+4. Coding/Naming Conventions
 - Classes use PascalCase (Player, Creature, GameState)
 - Variables use lowercase_with_underscores
 - Functions use lowercase_with_underscores
 - Each chapter in a separate Python file
 - Main game flow controlled in JWstartgame.py
 
-5. How to Run / Build / Deploy
+5. How to Run
 - Run locally: `python JWstartgame.py` from terminal
-- Run online via PythonAnywhere:
-  1. Upload all `.py` files to your PythonAnywhere account
-  2. Open a console and run: `python3.7 /home/yourusername/JWstartgame.py`
 
 6. Architecture Overview
 - `JWstartgame.py` controls game loop and chapter transitions
