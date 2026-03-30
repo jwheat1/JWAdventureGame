@@ -1,56 +1,46 @@
 import time
+from JWglobalvariables import player, creature, GameState
 
 def chapter4(player, creature, game_state):
-    game_state.current_chapter = 4
-
-    print("Chapter 4: The control room door is sealed, requiring a security override.")
-    time.sleep(2)
+    print("\nChapter 4: Control room locked.")
 
     while True:
-        print("\nYou are at the control room door.")
-        print("Actions:")
-        print("1. Use clues from the data log")
-        print("2. Force the door")
-        print("3. Search nearby offices for a backup power cell")
-        print("4. Return to the Greenhouse")
+        print("\nControl Door:")
+        print("1. Use data log")
+        print("2. Force door")
+        print("3. Use power cell")
+        print("4. Go back")
 
-        choice = input("Choose an action (1-4): ")
+        choice = input("Choice: ")
 
         if choice == "1":
             if game_state.hasDataLog:
-                print("You use the clues from the data log and input the security code. The door opens!")
-                game_state.hasControlRoomKey = True
-                time.sleep(2)
-                print("You gain access to the control room.")
+                print("Door unlocked!")
                 game_state.current_chapter = 5
                 break
             else:
-                print("You need to find the data log first!")
-                time.sleep(2)
+                print("Need data log.")
 
         elif choice == "2":
-            print("You try to force the door open... but an alarm triggers! The creature reappears!")
-            creature.update_health(30)
-            print(f"Creature remaining health: {creature.get_health()}")
-            time.sleep(2)
+            print("Alarm triggered! Creature attacks!")
+            player.update_health(-15)
 
         elif choice == "3":
             if game_state.hasBackupPowerCell:
-                print("You find a backup power cell and use it to override the door's security system.")
-                game_state.hasControlRoomKey = True
-                time.sleep(2)
-                print("You gain access to the control room.")
+                print("Door powered open!")
                 game_state.current_chapter = 5
                 break
             else:
-                print("You need to find the backup power cell first!")
-                time.sleep(2)
+                print("No power cell.")
 
         elif choice == "4":
-            print("You return to the Greenhouse.")
             game_state.current_chapter = 3
-            time.sleep(2)
             break
 
         else:
-            print("Invalid choice. Please choose 1-4.")
+            print("Invalid choice.")
+
+        if player.get_health() <= 0:
+            print("You died.")
+            game_state.game_ended = True
+            break

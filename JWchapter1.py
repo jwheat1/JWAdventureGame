@@ -1,40 +1,48 @@
 import time
+from JWglobalvariables import player, GameState
 
 def chapter1(player, game_state):
-    game_state.current_chapter = 1
-
-    print("Chapter 1: The station floated in silence, its lights flickering like a dying star.")
-    time.sleep(2)
+    print("\nChapter 1: The station floated in silence...")
+    explored = False
+    powered = False
 
     while True:
-        print("\nYou are in the Docking Bay.")
-        print("Actions:")
-        print("1. Explore docking bay")
-        print("2. Check communication room")
-        print("3. Restore partial power")
-        print("4. Move to Main Hallway")
+        print("\nDocking Bay:")
+        print("1. Explore")
+        print("2. Check communications")
+        print("3. Restore power")
+        print("4. Go to hallway")
 
-        choice = input("Choose an action (1-4): ")
+        choice = input("Choice: ")
 
         if choice == "1":
-            print("You find a broken robot lying against the wall. It flickers briefly, then goes dark.")
-            game_state.hasCreatureData = True
-            time.sleep(2)
+            if not explored:
+                print("You find a broken robot.")
+                game_state.hasCreatureData = True
+                explored = True
+            else:
+                print("Nothing new here.")
 
         elif choice == "2":
-            print("You check the communication room, but there is no signal detected.")
-            time.sleep(2)
+            if powered:
+                print("You detect a weak signal.")
+            else:
+                print("No signal. Try restoring power.")
 
         elif choice == "3":
-            print("You restore partial power. Lights flicker on in one sector of the station.")
-            game_state.hasBackupPowerCell = True
-            time.sleep(2)
+            if not powered:
+                print("Power restored.")
+                game_state.hasBackupPowerCell = True
+                powered = True
+            else:
+                print("Power already on.")
 
         elif choice == "4":
-            print("You move towards the Main Hallway...")
-            game_state.current_chapter = 2
-            time.sleep(2)
-            break
+            if powered:
+                game_state.current_chapter = 2
+                break
+            else:
+                print("Door is locked. Restore power first.")
 
         else:
-            print("Invalid choice. Please choose 1-4.")
+            print("Invalid choice.")

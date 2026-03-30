@@ -1,44 +1,40 @@
 import time
+from JWglobalvariables import player, GameState
 
 def chapter2(player, game_state):
-    game_state.current_chapter = 2
-
-    print("Chapter 2: The hallway echoed with metallic groans, as if the station itself was breathing.")
-    time.sleep(2)
+    print("\nChapter 2: The hallway echoes...")
+    found_log = False
 
     while True:
-        print("\nYou are in the Laboratory area.")
-        print("Actions:")
-        print("1. Search the lab")
-        print("2. Listen to data log")
-        print("3. Ignore lab and continue to next sector")
-        print("4. Return to Docking Bay")
+        print("\nLaboratory:")
+        print("1. Search lab")
+        print("2. Listen to log")
+        print("3. Continue forward")
+        print("4. Go back")
 
-        choice = input("Choose an action (1-4): ")
+        choice = input("Choice: ")
 
         if choice == "1":
-            print("You find a data log hidden among overturned equipment.")
-            game_state.hasDataLog = True
-            time.sleep(2)
+            if not found_log:
+                print("You found a data log!")
+                game_state.hasDataLog = True
+                found_log = True
+            else:
+                print("Nothing else found.")
 
         elif choice == "2":
             if game_state.hasDataLog:
-                print("You listen to the data log. The crew argued about a dangerous experiment.")
+                print("The log reveals a dangerous experiment.")
             else:
-                print("You need to find the data log first!")
-            time.sleep(2)
+                print("You need the log first.")
 
         elif choice == "3":
-            print("You ignore the lab and continue down the hallway...")
             game_state.current_chapter = 3
-            time.sleep(2)
             break
 
         elif choice == "4":
-            print("You return to the Docking Bay...")
             game_state.current_chapter = 1
-            time.sleep(2)
             break
 
         else:
-            print("Invalid choice. Please choose 1-4.")
+            print("Invalid choice.")

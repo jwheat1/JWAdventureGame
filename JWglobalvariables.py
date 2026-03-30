@@ -1,6 +1,6 @@
 import random
 
-# Class for managing player details
+# -------- CLASSES --------
 class Player:
     def __init__(self, name, health, equipment, location):
         self.name = name
@@ -20,11 +20,7 @@ class Player:
     def add_equipment(self, item):
         self.equipment.append(item)
 
-    def set_location(self, new_location):
-        self.location = new_location
 
-
-# Class for managing the Creature
 class Creature:
     def __init__(self, species, health, behavior):
         self.species = species
@@ -38,7 +34,6 @@ class Creature:
         self.health -= damage
 
 
-# Class for managing game state
 class GameState:
     def __init__(self):
         self.hasDataLog = False
@@ -48,7 +43,6 @@ class GameState:
         self.current_chapter = 1
         self.game_won = False
         self.game_ended = False
-
 
 # Initialize objects
 player = Player("Engineer", 100, [], "Docking Bay")
